@@ -1,6 +1,15 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB connected successfully'))
-  .catch(err => console.log('MongoDB connection error:', err));
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+// Routes
+app.use("/api/residents", require("./routes/residents"));
+
+// Connect DB & start server
+mongoose.connect("mongodb://127.0.0.1:27017/sms")
+  .then(() => app.listen(5000, () => console.log("Server running on port 5000")))
+  .catch(err => console.log(err));
