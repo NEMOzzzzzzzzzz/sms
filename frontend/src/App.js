@@ -8,13 +8,15 @@ import "C:\\Projects\\sms\\frontend\\src\\styles\\SideBar.css";
 function App() {
   return (
     <Router>
-      <div style={{ display: "flex"}}>
+      <div style={{ }}> {/* Fix main home content to center of the page.  */}
+        
         <Sidebar />
         <div style={{
           flex: 1,
           display: "flex",
           justifyContent: "center",  // horizontal center
-          alignItems: "center"       // vertical center
+          alignItems: "center",
+          textAlign: "center"     // vertical center
         }}>
         <Home />
         </div>
