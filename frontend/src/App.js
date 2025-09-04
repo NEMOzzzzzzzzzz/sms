@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Residents from "./components/Residents";
+import { BrowserRouter as Router} from "react-router-dom";
+//import Residents from "./components/Residents";
+import Sidebar from "./components/SideBar";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <Router>
-      <nav>
-        <Link to="/residents">Residents</Link>
-      </nav>
-      <Routes>
-        <Route path="/residents" element={<Residents />} />
-      </Routes>
+      <Sidebar />
+      <div style={{ flex: 1 }}>
+        <Home />
+      </div>
     </Router>
   );
 }
