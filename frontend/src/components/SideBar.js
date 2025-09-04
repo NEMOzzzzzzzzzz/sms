@@ -1,24 +1,23 @@
-// Sidebar.js
-import React from "react";
+// SideBar.js
+import { Link, Routes, Route } from "react-router-dom";
+import Residents from "C:\\Projects\\sms\\frontend\\src\\components\\Residents.js";
 
-function Sidebar() {
+function SideBar() {
   return (
-    <div style={{
-      width: "250px",
-      height: "100vh",
-      background: "#1f2937",
-      color: "white",
-      padding: "20px"
-    }}>
-      <h2>Society App</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li>🏠 Home</li>
-        <li>👥 Residents</li>
-        <li>📊 Reports</li>
-        <li>⚙ Settings</li>
+    <aside className="SideBar">
+      <h2>Menu</h2>
+      <ul>
+        <nav>
+            <Link to="/residents"><li>Residents</li></Link>
+        </nav>
+        <Routes>
+            <Route path="/residents" element={<Residents />} />
+        </Routes>
+        <li>Payments</li>
+        <li>Announcements</li>
       </ul>
-    </div>
+    </aside>
   );
 }
 
-export default Sidebar;
+export default SideBar;
