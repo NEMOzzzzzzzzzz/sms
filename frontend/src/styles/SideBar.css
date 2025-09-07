@@ -1,4 +1,4 @@
-.sideBar {
+.sidebar {
   width: 200px;
   background: #00e5ff;
   height: 100vh;
@@ -6,27 +6,26 @@
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
-.sideBar h2 {
+.sidebar h2 {
   color: #e74c3c;
   margin-bottom: 20px;
 }
 
-.sideBar ul {
+.sidebar ul {
   list-style: none;
   padding: 0;
 }
 
-.sideBar li {
+.sidebar li {
   margin: 10px 0;
 }
 
-.sideBar a {
+.sidebar a {
   text-decoration: none;
   color: #2c3e50;
   transition: 0.2s;
 }
 
-.sideBar a:hover {
+.sidebar a:hover {
   color: #3498db;
 }
-
