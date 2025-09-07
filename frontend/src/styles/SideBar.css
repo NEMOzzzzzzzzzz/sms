@@ -1,6 +1,7 @@
 .SideBar {
     background-color: aqua;
     color: red;
-    text-align: left;
-    margin-right: 1450px;
+    display: flex;
+    height: 100vh;
+    width: 250px;
 }
