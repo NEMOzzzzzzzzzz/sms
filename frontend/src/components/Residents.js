@@ -89,7 +89,7 @@ export default function Residents() {
   return (
     <div className="residents-container">
       <div className="header">
-        <h1>👥 Residents Management</h1>
+        <h1>Resident Management</h1>
         <p>Manage society residents and their information</p>
       </div>
 
@@ -107,6 +107,7 @@ export default function Residents() {
               onChange={handleChange}
               required
               disabled={loading}
+              className="form-input-1"
             />
             <input
               name="flat"
@@ -115,6 +116,7 @@ export default function Residents() {
               onChange={handleChange}
               required
               disabled={loading}
+              className="form-input-1"
             />
             <input
               name="contact"
@@ -123,6 +125,7 @@ export default function Residents() {
               onChange={handleChange}
               required
               disabled={loading}
+              className="form-input-1"
             />
           </div>
           <div className="form-actions">

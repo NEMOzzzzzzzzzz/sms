@@ -1,13 +1,13 @@
 .sidebar {
   width: 200px;
-  background: #00e5ff;
+  background: #638bb1;
   height: 100vh;
   padding: 20px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-  color: #e74c3c;
+  color: #2e2e2e;
   margin-bottom: 20px;
 }
 
@@ -28,4 +28,11 @@
 
 .sidebar a:hover {
   color: #3498db;
+}
+
+.sidebar-footer {
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
 }

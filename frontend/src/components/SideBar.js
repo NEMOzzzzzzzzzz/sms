@@ -15,7 +15,7 @@ function SideBar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h2>🏢 SMS</h2>
+        <h2>Society Management App</h2>
         <p>Society Management</p>
       </div>
       

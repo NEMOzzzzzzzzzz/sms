@@ -105,9 +105,9 @@ export default function Announcements() {
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case "urgent": return "#F44336";
-      case "high": return "#FF9800";
-      case "normal": return "#4CAF50";
+      case "urgent": return "#981108ff";
+      case "high": return "#e2c847ff";
+      case "normal": return "#3ad22cff";
       case "low": return "#9E9E9E";
       default: return "#4CAF50";
     }
