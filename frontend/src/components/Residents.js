@@ -95,101 +95,104 @@ export default function Residents() {
 
       {error && <div className="error-message">{error}</div>}
 
-      {/* Add/Edit Form */}
-      <div className="form-section">
-        <h3>{editingId ? "Edit Resident" : "Add New Resident"}</h3>
-        <form onSubmit={handleSubmit} className="resident-form">
-          <div className="form-group">
-            <input
-              name="name"
-              placeholder="Full Name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              disabled={loading}
-              className="form-input-1"
-            />
-            <input
-              name="flat"
-              placeholder="Flat No (e.g., A-101)"
-              value={form.flat}
-              onChange={handleChange}
-              required
-              disabled={loading}
-              className="form-input-1"
-            />
-            <input
-              name="contact"
-              placeholder="Contact Number"
-              value={form.contact}
-              onChange={handleChange}
-              required
-              disabled={loading}
-              className="form-input-1"
-            />
-          </div>
-          <div className="form-actions">
-            <button type="submit" disabled={loading} className="btn-primary">
-              {loading ? "Saving..." : editingId ? "Update Resident" : "Add Resident"}
-            </button>
-            {editingId && (
-              <button type="button" onClick={handleCancel} className="btn-secondary">
-                Cancel
+      {/* Content Wrapper for side-by-side layout */}
+      <div className="content-wrapper">
+        {/* Add/Edit Form */}
+        <div className="form-section">
+          <h3>{editingId ? "Edit Resident" : "Add New Resident"}</h3>
+          <form onSubmit={handleSubmit} className="resident-form">
+            <div className="form-group">
+              <input
+                name="name"
+                placeholder="Full Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                className="form-input-1"
+              />
+              <input
+                name="flat"
+                placeholder="Flat No (e.g., A-101)"
+                value={form.flat}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                className="form-input-1"
+              />
+              <input
+                name="contact"
+                placeholder="Contact Number"
+                value={form.contact}
+                onChange={handleChange}
+                required
+                disabled={loading}
+                className="form-input-1"
+              />
+            </div>
+            <div className="form-actions">
+              <button type="submit" disabled={loading} className="btn-primary">
+                {loading ? "Saving..." : editingId ? "Update Resident" : "Add Resident"}
               </button>
-            )}
-          </div>
-        </form>
-      </div>
+              {editingId && (
+                <button type="button" onClick={handleCancel} className="btn-secondary">
+                  Cancel
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
 
-      {/* Search */}
-      <div className="search-section">
-        <input
-          type="text"
-          placeholder="🔍 Search by name, flat, or contact..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-      </div>
+        {/* Residents List */}
+        <div className="residents-list">
+          {/* Search */}
+          <div className="search-section">
+            <input
+              type="text"
+              placeholder="🔍 Search by name, flat, or contact..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
 
-      {/* Residents List */}
-      <div className="residents-list">
-        <h3>All Residents ({filteredResidents.length})</h3>
-        {loading ? (
-          <div className="loading">Loading residents...</div>
-        ) : filteredResidents.length === 0 ? (
-          <div className="no-data">
-            {searchTerm ? "No residents found matching your search." : "No residents added yet. Add your first resident above!"}
-          </div>
-        ) : (
-          <div className="residents-grid">
-            {filteredResidents.map((resident) => (
-              <div key={resident._id} className="resident-card">
-                <div className="resident-info">
-                  <h4>{resident.name}</h4>
-                  <p><strong>Flat:</strong> {resident.flat}</p>
-                  <p><strong>Contact:</strong> {resident.contact}</p>
+          <h3>All Residents ({filteredResidents.length})</h3>
+          {loading ? (
+            <div className="loading">Loading residents...</div>
+          ) : filteredResidents.length === 0 ? (
+            <div className="no-data">
+              {searchTerm ? "No residents found matching your search." : "No residents added yet. Add your first resident above!"}
+            </div>
+          ) : (
+            <div className="residents-grid">
+              {filteredResidents.map((resident) => (
+                <div key={resident._id} className="resident-card">
+                  <div className="resident-info">
+                    <h4>{resident.name}</h4>
+                    <p><strong>Flat:</strong> {resident.flat}</p>
+                    <p><strong>Contact:</strong> {resident.contact}</p>
+                  </div>
+                  <div className="resident-actions">
+                    <button 
+                      onClick={() => handleEdit(resident)}
+                      className="btn-edit"
+                      title="Edit Resident"
+                    >
+                     ✏️
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(resident._id)}
+                      className="btn-delete"
+                      title="Delete Resident"
+                    >
+                      🗑️
+                    </button>
+                  </div>
                 </div>
-                <div className="resident-actions">
-                  <button 
-                    onClick={() => handleEdit(resident)}
-                    className="btn-edit"
-                    title="Edit Resident"
-                  >
-                   ✏️
-                  </button>
-                  <button 
-                    onClick={() => handleDelete(resident._id)}
-                    className="btn-delete"
-                    title="Delete Resident"
-                  >
-                    🗑️
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
