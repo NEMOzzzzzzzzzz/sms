@@ -19,6 +19,7 @@
   min-width: 350px;
   background: rgba(255, 255, 255, 0.7);
   padding: 20px;
+  border: 1px solid #5b5b5b;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -27,7 +28,7 @@
 .residents-list {
   flex: 1;
   min-width: 400px;
-  border: 1px solid #ddd;
+  border: 1px solid #5b5b5b;
   border-radius: 8px;
   padding: 15px;
   background: rgba(255, 255, 255, 0.9);
@@ -69,6 +70,10 @@
   border-bottom-color: #cdcdcd;
   background-color: rgb(196, 196, 196); 
   transition: border-color 0.3s ease, background-color 0.2s ease;
+}
+
+.form-input-1:hover {
+  background-color: rgb(196, 196, 196);
 }
 
 /* Placeholder */
