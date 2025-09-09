@@ -6,7 +6,7 @@ function SideBar() {
   const location = useLocation();
 
   const menuItems = [
-    { path: "/", label: "Dashboard", icon: "🏠" },
+    { path: "/", label: "Dashboard", icon: "" },
     { path: "/residents", label: "Residents", icon: "👥" },
     { path: "/payments", label: "Payments", icon: "💰" },
     { path: "/announcements", label: "Announcements", icon: "📢" }
@@ -15,16 +15,13 @@ function SideBar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h2>Society Management App</h2>
-        <p>Society Management</p>
+        <h2>My Society Manager</h2>
       </div>
-      
       <nav className="sidebar-nav">
         <ul>
           {menuItems.map((item) => (
             <li key={item.path} className={location.pathname === item.path ? "active" : ""}>
               <Link to={item.path}>
-                <span className="icon">{item.icon}</span>
                 <span className="label">{item.label}</span>
               </Link>
             </li>
