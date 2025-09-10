@@ -5,6 +5,7 @@
   height: 100vh;
   padding: 20px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
 }
 
 .sidebar-header{

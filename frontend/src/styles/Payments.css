@@ -1,5 +1,6 @@
 .payments-container {
   padding: 20px;
+  display: flex;
 }
 
 .payments-container h1 {
@@ -19,4 +20,75 @@
   color: #27ae60;
 }
 
+.wrapper {
+  padding: 20px;
+  min-width: 636px;
+}
 
+.payments-list {
+  padding: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-width: 636px;
+}
+
+.payments-table {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  border-collapse: separate;
+  border-spacing: 10px 0; /* 10px horizontal, 0 vertical */
+}
+
+th {
+  margin-bottom: 50px; 
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 1px solid black;
+}
+
+.status-badge {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 3px;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.form-row select {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+
+.payment-form button {
+  margin-left: 15px;
+}
+
+
+.form-section h3 {
+  text-align: center;
+}
+
+.stat-card {
+  display: flex;
+}
+
+.stat-card h3 {
+  padding: 10px;
+}
+
+td {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 12px;
+}
+
+td.type {
+  margin-left: 10px;
+  margin-right: 10px;
+}

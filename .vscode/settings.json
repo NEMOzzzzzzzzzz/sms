@@ -1,7 +1,10 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  }
+  },
+  "files.autoSave": "onFocusChange"
 }
