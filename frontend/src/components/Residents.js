@@ -39,7 +39,10 @@ export default function Residents() {
     try {
       setLoading(true);
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/residents/${editingId}`, form);
+        await axios.put(
+          `http://localhost:5000/api/residents/${editingId}`,
+          form
+        );
         setEditingId(null);
       } else {
         await axios.post("http://localhost:5000/api/residents", form);
@@ -56,7 +59,11 @@ export default function Residents() {
 
   // Edit resident
   const handleEdit = (resident) => {
-    setForm({ name: resident.name, flat: resident.flat, contact: resident.contact });
+    setForm({
+      name: resident.name,
+      flat: resident.flat,
+      contact: resident.contact,
+    });
     setEditingId(resident._id);
   };
 
@@ -80,10 +87,11 @@ export default function Residents() {
   };
 
   // Filter residents based on search term
-  const filteredResidents = residents.filter(resident =>
-    resident.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    resident.flat.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    resident.contact.includes(searchTerm)
+  const filteredResidents = residents.filter(
+    (resident) =>
+      resident.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      resident.flat.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      resident.contact.includes(searchTerm)
   );
 
   return (
@@ -132,10 +140,18 @@ export default function Residents() {
             </div>
             <div className="form-actions">
               <button type="submit" disabled={loading} className="btn-primary">
-                {loading ? "Saving..." : editingId ? "Update Resident" : "Add Resident"}
+                {loading
+                  ? "Saving..."
+                  : editingId
+                  ? "Update Resident"
+                  : "Add Resident"}
               </button>
               {editingId && (
-                <button type="button" onClick={handleCancel} className="btn-secondary">
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="btn-secondary"
+                >
                   Cancel
                 </button>
               )}
@@ -161,7 +177,9 @@ export default function Residents() {
             <div className="loading">Loading residents...</div>
           ) : filteredResidents.length === 0 ? (
             <div className="no-data">
-              {searchTerm ? "No residents found matching your search." : "No residents added yet. Add your first resident above!"}
+              {searchTerm
+                ? "No residents found matching your search."
+                : "No residents added yet. Add your first resident above!"}
             </div>
           ) : (
             <div className="residents-grid">
@@ -169,18 +187,22 @@ export default function Residents() {
                 <div key={resident._id} className="resident-card">
                   <div className="resident-info">
                     <h4>{resident.name}</h4>
-                    <p><strong>Flat:</strong> {resident.flat}</p>
-                    <p><strong>Contact:</strong> {resident.contact}</p>
+                    <p>
+                      <strong>Flat:</strong> {resident.flat}
+                    </p>
+                    <p>
+                      <strong>Contact:</strong> {resident.contact}
+                    </p>
                   </div>
                   <div className="resident-actions">
-                    <button 
+                    <button
                       onClick={() => handleEdit(resident)}
                       className="btn-edit"
                       title="Edit Resident"
                     >
-                     ✏️
+                      ✏️
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleDelete(resident._id)}
                       className="btn-delete"
                       title="Delete Resident"

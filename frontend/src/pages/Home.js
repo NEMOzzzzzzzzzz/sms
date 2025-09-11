@@ -8,7 +8,7 @@ function Home() {
     totalResidents: 0,
     totalPayments: 0,
     totalAnnouncements: 0,
-    recentActivity: []
+    recentActivity: [],
   });
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,9 @@ function Home() {
   const fetchDashboardData = async () => {
     try {
       // Fetch residents count
-      const residentsRes = await axios.get("http://localhost:5000/api/residents");
+      const residentsRes = await axios.get(
+        "http://localhost:5000/api/residents"
+      );
       const totalResidents = residentsRes.data.length;
 
       // Mock data for other stats (until APIs are ready)
@@ -28,10 +30,22 @@ function Home() {
         totalPayments: 0,
         totalAnnouncements: 0,
         recentActivity: [
-          { type: "resident", message: "New resident added", time: "2 hours ago" },
-          { type: "payment", message: "Payment received from A-101", time: "1 day ago" },
-          { type: "announcement", message: "New announcement posted", time: "2 days ago" }
-        ]
+          {
+            type: "resident",
+            message: "New resident added",
+            time: "2 hours ago",
+          },
+          {
+            type: "payment",
+            message: "Payment received from A-101",
+            time: "1 day ago",
+          },
+          {
+            type: "announcement",
+            message: "New announcement posted",
+            time: "2 days ago",
+          },
+        ],
       });
     } catch (error) {
       console.error("Failed to fetch dashboard data:", error);
@@ -39,7 +53,7 @@ function Home() {
         totalResidents: 0,
         totalPayments: 0,
         totalAnnouncements: 0,
-        recentActivity: []
+        recentActivity: [],
       });
     } finally {
       setLoading(false);
@@ -47,21 +61,21 @@ function Home() {
   };
 
   const quickActions = [
-    { 
-      title: "Add Resident", 
+    {
+      title: "Add Resident",
       description: "Register a new society resident",
-      link: "/residents"
+      link: "/residents",
     },
-    { 
-      title: "Add Payment", 
+    {
+      title: "Add Payment",
       description: "Record a payment from a resident",
-      link: "/payments"
+      link: "/payments",
     },
-    { 
-      title: "Post Announcement", 
+    {
+      title: "Post Announcement",
       description: "Share updates with all residents",
-      link: "/announcements"
-    }
+      link: "/announcements",
+    },
   ];
 
   if (loading) {
@@ -109,5 +123,3 @@ function Home() {
 }
 
 export default Home;
-
-

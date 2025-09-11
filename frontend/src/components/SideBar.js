@@ -9,7 +9,7 @@ function SideBar() {
     { path: "/", label: "Dashboard", icon: "" },
     { path: "/residents", label: "Residents", icon: "👥" },
     { path: "/payments", label: "Payments", icon: "💰" },
-    { path: "/announcements", label: "Announcements", icon: "📢" }
+    { path: "/announcements", label: "Announcements", icon: "📢" },
   ];
 
   return (
@@ -20,7 +20,10 @@ function SideBar() {
       <nav className="sidebar-nav">
         <ul>
           {menuItems.map((item) => (
-            <li key={item.path} className={location.pathname === item.path ? "active" : ""}>
+            <li
+              key={item.path}
+              className={location.pathname === item.path ? "active" : ""}
+            >
               <Link to={item.path}>
                 <span className="label">{item.label}</span>
               </Link>
@@ -28,7 +31,7 @@ function SideBar() {
           ))}
         </ul>
       </nav>
-      
+
       <div className="sidebar-footer">
         <p>© 2025 SMS v1.0</p>
       </div>

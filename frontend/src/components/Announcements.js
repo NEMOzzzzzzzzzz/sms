@@ -8,7 +8,7 @@ export default function Announcements() {
     title: "",
     content: "",
     priority: "normal",
-    category: "general"
+    category: "general",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,21 +33,23 @@ export default function Announcements() {
         {
           _id: "1",
           title: "Society Meeting",
-          content: "Monthly society meeting scheduled for next Sunday at 10 AM in the community hall.",
+          content:
+            "Monthly society meeting scheduled for next Sunday at 10 AM in the community hall.",
           priority: "high",
           category: "events",
           createdAt: new Date().toISOString(),
-          author: "Admin"
+          author: "Admin",
         },
         {
           _id: "2",
           title: "Maintenance Work",
-          content: "Elevator maintenance will be conducted on Saturday. Please use stairs.",
+          content:
+            "Elevator maintenance will be conducted on Saturday. Please use stairs.",
           priority: "normal",
           category: "maintenance",
           createdAt: new Date(Date.now() - 86400000).toISOString(),
-          author: "Admin"
-        }
+          author: "Admin",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -63,12 +65,20 @@ export default function Announcements() {
     try {
       setLoading(true);
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/announcements/${editingId}`, form);
+        await axios.put(
+          `http://localhost:5000/api/announcements/${editingId}`,
+          form
+        );
         setEditingId(null);
       } else {
         await axios.post("http://localhost:5000/api/announcements", form);
       }
-      setForm({ title: "", content: "", priority: "normal", category: "general" });
+      setForm({
+        title: "",
+        content: "",
+        priority: "normal",
+        category: "general",
+      });
       fetchAnnouncements();
     } catch (err) {
       setError("Announcements feature not yet implemented in backend");
@@ -82,13 +92,18 @@ export default function Announcements() {
       title: announcement.title,
       content: announcement.content,
       priority: announcement.priority,
-      category: announcement.category
+      category: announcement.category,
     });
     setEditingId(announcement._id);
   };
 
   const handleCancel = () => {
-    setForm({ title: "", content: "", priority: "normal", category: "general" });
+    setForm({
+      title: "",
+      content: "",
+      priority: "normal",
+      category: "general",
+    });
     setEditingId(null);
   };
 
@@ -105,28 +120,43 @@ export default function Announcements() {
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case "urgent": return "#981108ff";
-      case "high": return "#e2c847ff";
-      case "normal": return "#3ad22cff";
-      case "low": return "#9E9E9E";
-      default: return "#4CAF50";
+      case "urgent":
+        return "#981108ff";
+      case "high":
+        return "#e2c847ff";
+      case "normal":
+        return "#3ad22cff";
+      case "low":
+        return "#9E9E9E";
+      default:
+        return "#4CAF50";
     }
   };
 
   const getCategoryIcon = (category) => {
     switch (category) {
-      case "general": return "📋";
-      case "maintenance": return "🔧";
-      case "events": return "🎉";
-      case "rules": return "📜";
-      case "emergency": return "🚨";
-      default: return "📋";
+      case "general":
+        return "📋";
+      case "maintenance":
+        return "🔧";
+      case "events":
+        return "🎉";
+      case "rules":
+        return "📜";
+      case "emergency":
+        return "🚨";
+      default:
+        return "📋";
     }
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString() + " " + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return (
+      date.toLocaleDateString() +
+      " " +
+      date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    );
   };
 
   return (
@@ -156,7 +186,7 @@ export default function Announcements() {
               value={form.priority}
               onChange={handleChange}
             >
-              {priorities.map(priority => (
+              {priorities.map((priority) => (
                 <option key={priority} value={priority}>
                   {priority.charAt(0).toUpperCase() + priority.slice(1)}
                 </option>
@@ -167,7 +197,7 @@ export default function Announcements() {
               value={form.category}
               onChange={handleChange}
             >
-              {categories.map(category => (
+              {categories.map((category) => (
                 <option key={category} value={category}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </option>
@@ -189,10 +219,18 @@ export default function Announcements() {
 
           <div className="form-actions">
             <button type="submit" disabled={loading} className="btn-primary">
-              {loading ? "Saving..." : editingId ? "Update Announcement" : "Create Announcement"}
+              {loading
+                ? "Saving..."
+                : editingId
+                ? "Update Announcement"
+                : "Create Announcement"}
             </button>
             {editingId && (
-              <button type="button" onClick={handleCancel} className="btn-secondary">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="btn-secondary"
+              >
                 Cancel
               </button>
             )}
@@ -206,18 +244,26 @@ export default function Announcements() {
         {loading ? (
           <div className="loading">Loading announcements...</div>
         ) : announcements.length === 0 ? (
-          <div className="no-data">No announcements yet. Create your first announcement above!</div>
+          <div className="no-data">
+            No announcements yet. Create your first announcement above!
+          </div>
         ) : (
           <div className="announcements-grid">
-            {announcements.map(announcement => (
+            {announcements.map((announcement) => (
               <div key={announcement._id} className="announcement-card">
                 <div className="announcement-header">
                   <div className="announcement-meta">
-                    <span className="category-icon">{getCategoryIcon(announcement.category)}</span>
+                    <span className="category-icon">
+                      {getCategoryIcon(announcement.category)}
+                    </span>
                     <span className="category">{announcement.category}</span>
-                    <span 
+                    <span
                       className="priority-badge"
-                      style={{ backgroundColor: getPriorityColor(announcement.priority) }}
+                      style={{
+                        backgroundColor: getPriorityColor(
+                          announcement.priority
+                        ),
+                      }}
                     >
                       {announcement.priority}
                     </span>
@@ -228,7 +274,7 @@ export default function Announcements() {
                       className="btn-edit"
                       title="Edit Announcement"
                     >
-                     ✏️
+                      ✏️
                     </button>
                     <button
                       onClick={() => handleDelete(announcement._id)}
@@ -247,7 +293,8 @@ export default function Announcements() {
 
                 <div className="announcement-footer">
                   <small>
-                    By {announcement.author || "Admin"} • {formatDate(announcement.createdAt)}
+                    By {announcement.author || "Admin"} •{" "}
+                    {formatDate(announcement.createdAt)}
                   </small>
                 </div>
               </div>
