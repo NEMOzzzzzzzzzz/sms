@@ -2,17 +2,16 @@
   bottom: 100%;
   width: 200px;
   background-color: rgb(154, 154, 154);
-  height: 100vh;
+  height: 100%;
   padding: 20px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   min-width: 200px;
 }
 
-.sidebar-header{
+.sidebar-header {
   border-bottom: 2px solid black;
   margin-bottom: 60px;
 }
-
 
 .sidebar h2 {
   color: #2e2e2e;
@@ -46,15 +45,13 @@
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-
-
 .sidebar-footer {
-    position: absolute;
+  position: absolute;
   bottom: 0;
   width: 100%;
   padding: 10px;
 }
 
 .label {
-  color:#202020;
+  color: #202020;
 }
