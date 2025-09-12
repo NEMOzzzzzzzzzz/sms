@@ -50,7 +50,6 @@
 }
 
 .form-input-1 {
-
   width: 85%;
   padding: 8px 10px;
   font-size: 24px;
@@ -70,7 +69,7 @@
 .form-input-1:focus {
   border-left-color: #cdcdcd;
   border-bottom-color: #cdcdcd;
-  background-color: rgb(196, 196, 196); 
+  background-color: rgb(196, 196, 196);
   transition: border-color 0.3s ease, background-color 0.2s ease;
 }
 
@@ -96,7 +95,8 @@
   gap: 10px;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 12px 20px;
   font-size: 14px;
   color: #333;
@@ -104,16 +104,19 @@
   border: 2px solid hsl(0, 0%, 45%);
   border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.3s ease, background-color 0.2s ease, transform 0.1s ease;
+  transition: border-color 0.3s ease, background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 /* Hover effect */
-.btn-primary:hover, .btn-secondary:hover {
+.btn-primary:hover,
+.btn-secondary:hover {
   background-color: #e0e0e0;
 }
 
 /* Active / click effect */
-.btn-primary:active, .btn-secondary:active {
+.btn-primary:active,
+.btn-secondary:active {
   transform: translateY(1px);
 }
 
@@ -133,7 +136,8 @@
   border-bottom: 2px solid hsl(0, 0%, 45%);
   border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.3s ease, background-color 0.2s ease, transform 0.1s ease;
+  transition: border-color 0.3s ease, background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 /* Hover effect */
@@ -147,7 +151,6 @@
   outline: none;
   background-color: rgb(196, 196, 196);
 }
-
 
 /* Active / click effect */
 .search-input:active {
@@ -192,7 +195,8 @@
   gap: 10px;
 }
 
-.btn-edit, .btn-delete {
+.btn-edit,
+.btn-delete {
   background: none;
   border: none;
   font-size: 18px;
@@ -210,7 +214,8 @@
   background-color: #ffebee;
 }
 
-.loading, .no-data {
+.loading,
+.no-data {
   text-align: center;
   padding: 20px;
   color: #666;
@@ -230,8 +235,9 @@
   .content-wrapper {
     flex-direction: column;
   }
-  
-  .form-section, .residents-list {
+
+  .form-section,
+  .residents-list {
     min-width: unset;
   }
 }

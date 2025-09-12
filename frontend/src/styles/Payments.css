@@ -42,7 +42,7 @@
 }
 
 th {
-  margin-bottom: 50px; 
+  margin-bottom: 50px;
   padding: 2px;
   padding-left: 5px;
   padding-right: 5px;
@@ -64,11 +64,9 @@ th {
   margin-left: 15px;
 }
 
-
 .payment-form button {
   margin-left: 15px;
 }
-
 
 .form-section h3 {
   text-align: center;
