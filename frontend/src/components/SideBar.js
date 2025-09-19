@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { GoSidebarCollapse } from "react-icons/go";
+import { MdDashboardCustomize } from "react-icons/md";
+import { FaPeopleRoof } from "react-icons/fa6";
+import { MdPayments } from "react-icons/md";
+import { BiSolidNotification } from "react-icons/bi";
 import "../styles/SideBar.css";
 
 function SideBar() {
@@ -8,10 +12,10 @@ function SideBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const menuItems = [
-    { path: "/", label: "Dashboard", icon: "📊" },
-    { path: "/residents", label: "Residents", icon: "👥" },
-    { path: "/payments", label: "Payments", icon: "💰" },
-    { path: "/announcements", label: "Announcements", icon: "📢" },
+    { path: "/", label: "Dashboard", icon: <MdDashboardCustomize /> },
+    { path: "/residents", label: "Residents", icon: <FaPeopleRoof /> },
+    { path: "/payments", label: "Payments", icon: <MdPayments /> },
+    { path: "/announcements", label: "Announcements", icon: <BiSolidNotification /> },
   ];
 
   return (

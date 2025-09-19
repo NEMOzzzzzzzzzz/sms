@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { MdModeEdit } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
 import "../styles/Residents.css";
 
 export default function Residents() {
@@ -103,9 +105,7 @@ export default function Residents() {
 
       {error && <div className="error-message">{error}</div>}
 
-      {/* Content Wrapper for side-by-side layout */}
       <div className="content-wrapper">
-        {/* Add/Edit Form */}
         <div className="form-section">
           <h3>{editingId ? "Edit Resident" : "Add New Resident"}</h3>
           <form onSubmit={handleSubmit} className="resident-form">
@@ -200,14 +200,14 @@ export default function Residents() {
                       className="btn-edit"
                       title="Edit Resident"
                     >
-                      ✏️
+                      <MdModeEdit />
                     </button>
                     <button
                       onClick={() => handleDelete(resident._id)}
                       className="btn-delete"
                       title="Delete Resident"
                     >
-                      🗑️
+                      <FaTrash />
                     </button>
                   </div>
                 </div>

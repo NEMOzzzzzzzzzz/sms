@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { MdPayments } from "react-icons/md";
 import "../styles/Payments.css";
 
 export default function Payments() {
@@ -151,7 +152,7 @@ export default function Payments() {
     <div className="payments-container">
       <div className="wrapper">
         <div className="header">
-          <h1>💰 Payments Management</h1>
+          <h1><MdPayments /> Payments Management</h1>
           <p>Track and manage society payments</p>
         </div>
 
