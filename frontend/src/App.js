@@ -5,17 +5,16 @@ import Home from "./pages/Home";
 import Residents from "./components/Residents";
 import Payments from "./components/Payments";
 import Announcements from "./components/Announcements";
-import "./styles/App.css";
 
 function App() {
   return (
     <Router>
-      <div
-        className="app-container"
-        style={{ display: "flex", height: "100vh" }}
-      >
+      <div className="flex h-screen font-sans bg-gray-300 text-lg">
+        {/* Sidebar */}
         <Sidebar />
-        <main className="main-content">
+
+        {/* Main content */}
+        <main className="flex-1 p-6 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/residents" element={<Residents />} />

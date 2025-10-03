@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/Announcements.css";
 
 export default function Announcements() {
   const [announcements, setAnnouncements] = useState([]);
@@ -28,7 +27,7 @@ export default function Announcements() {
       setAnnouncements(res.data || []);
     } catch (err) {
       setError("Announcements feature not yet implemented in backend");
-      // Mock data for demonstration
+      // Mock demo data
       setAnnouncements([
         {
           _id: "1",
@@ -121,15 +120,15 @@ export default function Announcements() {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case "urgent":
-        return "#981108ff";
+        return "bg-red-600 text-white";
       case "high":
-        return "#e2c847ff";
+        return "bg-yellow-400 text-black";
       case "normal":
-        return "#3ad22cff";
+        return "bg-green-500 text-white";
       case "low":
-        return "#9E9E9E";
+        return "bg-gray-400 text-white";
       default:
-        return "#4CAF50";
+        return "bg-green-600 text-white";
     }
   };
 
@@ -160,19 +159,26 @@ export default function Announcements() {
   };
 
   return (
-    <div className="announcements-container">
-      <div className="header">
-        <h1>📢 Announcements</h1>
-        <p>Keep residents informed with important updates</p>
+    <div className="p-6">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">📢 Announcements</h1>
+        <p className="text-gray-600">
+          Keep residents informed with important updates
+        </p>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+      )}
 
-      {/* Add/Edit Announcement Form */}
-      <div className="form-section">
-        <h3>{editingId ? "Edit Announcement" : "Create New Announcement"}</h3>
-        <form onSubmit={handleSubmit} className="announcement-form">
-          <div className="form-row">
+      {/* Form */}
+      <div className="mb-8 bg-white shadow rounded p-6">
+        <h3 className="text-xl font-semibold mb-4">
+          {editingId ? "Edit Announcement" : "Create New Announcement"}
+        </h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <input
               name="title"
               placeholder="Announcement Title"
@@ -180,11 +186,13 @@ export default function Announcements() {
               onChange={handleChange}
               required
               disabled={loading}
+              className="flex-1 border border-gray-300 rounded px-3 py-2"
             />
             <select
               name="priority"
               value={form.priority}
               onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2"
             >
               {priorities.map((priority) => (
                 <option key={priority} value={priority}>
@@ -196,6 +204,7 @@ export default function Announcements() {
               name="category"
               value={form.category}
               onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2"
             >
               {categories.map((category) => (
                 <option key={category} value={category}>
@@ -205,20 +214,23 @@ export default function Announcements() {
             </select>
           </div>
 
-          <div className="form-row">
-            <textarea
-              name="content"
-              placeholder="Announcement content..."
-              value={form.content}
-              onChange={handleChange}
-              rows="4"
-              required
-              disabled={loading}
-            />
-          </div>
+          <textarea
+            name="content"
+            placeholder="Announcement content..."
+            value={form.content}
+            onChange={handleChange}
+            rows="4"
+            required
+            disabled={loading}
+            className="w-full border border-gray-300 rounded px-3 py-2"
+          />
 
-          <div className="form-actions">
-            <button type="submit" disabled={loading} className="btn-primary">
+          <div className="flex gap-3">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+            >
               {loading
                 ? "Saving..."
                 : editingId
@@ -229,7 +241,7 @@ export default function Announcements() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="btn-secondary"
+                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
               >
                 Cancel
               </button>
@@ -238,64 +250,69 @@ export default function Announcements() {
         </form>
       </div>
 
-      {/* Announcements List */}
-      <div className="announcements-list">
-        <h3>All Announcements ({announcements.length})</h3>
+      {/* List */}
+      <div>
+        <h3 className="text-xl font-semibold mb-4">
+          All Announcements ({announcements.length})
+        </h3>
         {loading ? (
-          <div className="loading">Loading announcements...</div>
+          <div className="text-gray-500">Loading announcements...</div>
         ) : announcements.length === 0 ? (
-          <div className="no-data">
+          <div className="text-gray-600">
             No announcements yet. Create your first announcement above!
           </div>
         ) : (
-          <div className="announcements-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {announcements.map((announcement) => (
-              <div key={announcement._id} className="announcement-card">
-                <div className="announcement-header">
-                  <div className="announcement-meta">
-                    <span className="category-icon">
-                      {getCategoryIcon(announcement.category)}
+              <div
+                key={announcement._id}
+                className="border border-gray-300 rounded-lg p-4 bg-yellow-50 shadow-sm"
+              >
+                {/* Header */}
+                <div className="flex justify-between items-center mb-2">
+                  <div className="flex items-center gap-2">
+                    <span>{getCategoryIcon(announcement.category)}</span>
+                    <span className="capitalize text-sm text-gray-600">
+                      {announcement.category}
                     </span>
-                    <span className="category">{announcement.category}</span>
                     <span
-                      className="priority-badge"
-                      style={{
-                        backgroundColor: getPriorityColor(
-                          announcement.priority
-                        ),
-                      }}
+                      className={`px-2 py-1 text-xs rounded ${getPriorityColor(
+                        announcement.priority
+                      )}`}
                     >
                       {announcement.priority}
                     </span>
                   </div>
-                  <div className="announcement-actions">
+                  <div className="flex gap-2">
                     <button
                       onClick={() => handleEdit(announcement)}
-                      className="btn-edit"
-                      title="Edit Announcement"
+                      className="px-2 py-1 rounded bg-yellow-200 hover:bg-yellow-300"
+                      title="Edit"
                     >
                       ✏️
                     </button>
                     <button
                       onClick={() => handleDelete(announcement._id)}
-                      className="btn-delete"
-                      title="Delete Announcement"
+                      className="px-2 py-1 rounded bg-red-200 hover:bg-red-300"
+                      title="Delete"
                     >
                       🗑️
                     </button>
                   </div>
                 </div>
 
-                <div className="announcement-content">
-                  <h4>{announcement.title}</h4>
-                  <p>{announcement.content}</p>
+                {/* Content */}
+                <div className="mb-2">
+                  <h4 className="font-semibold text-lg text-orange-600">
+                    {announcement.title}
+                  </h4>
+                  <p className="text-gray-700">{announcement.content}</p>
                 </div>
 
-                <div className="announcement-footer">
-                  <small>
-                    By {announcement.author || "Admin"} •{" "}
-                    {formatDate(announcement.createdAt)}
-                  </small>
+                {/* Footer */}
+                <div className="text-sm text-gray-500">
+                  By {announcement.author || "Admin"} •{" "}
+                  {formatDate(announcement.createdAt)}
                 </div>
               </div>
             ))}

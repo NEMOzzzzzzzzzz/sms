@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MdModeEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
-import "../styles/Residents.css";
 
 export default function Residents() {
   const [residents, setResidents] = useState([]);
@@ -12,7 +11,6 @@ export default function Residents() {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch all residents
   useEffect(() => {
     fetchResidents();
   }, []);
@@ -30,12 +28,10 @@ export default function Residents() {
     }
   };
 
-  // Handle input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Add or update resident
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -59,7 +55,6 @@ export default function Residents() {
     }
   };
 
-  // Edit resident
   const handleEdit = (resident) => {
     setForm({
       name: resident.name,
@@ -69,13 +64,11 @@ export default function Residents() {
     setEditingId(resident._id);
   };
 
-  // Cancel edit
   const handleCancel = () => {
     setForm({ name: "", flat: "", contact: "" });
     setEditingId(null);
   };
 
-  // Delete resident
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this resident?")) {
       try {
@@ -88,7 +81,6 @@ export default function Residents() {
     }
   };
 
-  // Filter residents based on search term
   const filteredResidents = residents.filter(
     (resident) =>
       resident.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -97,49 +89,69 @@ export default function Residents() {
   );
 
   return (
-    <div className="residents-container">
-      <div className="header">
-        <h1>Resident Management</h1>
-        <p>Manage society residents and their information</p>
+    <div className="p-5">
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold mb-2">Resident Management</h1>
+        <p className="text-gray-600">Manage society residents and their information</p>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && (
+        <div className="bg-red-100 text-red-700 p-2 rounded border-l-4 border-red-500 mb-5">
+          {error}
+        </div>
+      )}
 
-      <div className="content-wrapper">
-        <div className="form-section">
-          <h3>{editingId ? "Edit Resident" : "Add New Resident"}</h3>
-          <form onSubmit={handleSubmit} className="resident-form">
-            <div className="form-group">
-              <input
-                name="name"
-                placeholder="Full Name"
-                value={form.name}
-                onChange={handleChange}
-                required
+      <div className="flex gap-5 items-start md:flex-row flex-col">
+        {/* Form */}
+        <div className="flex-1 min-w-[350px] bg-white/70 p-5 border border-gray-600 rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold mb-4">
+            {editingId ? "Edit Resident" : "Add New Resident"}
+          </h3>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="w-11/12 p-2.5 text-xl font-semibold bg-gray-300 text-gray-800 rounded-md
+                         border-l-2 border-b-2 border-gray-500 outline-none mb-2
+                         focus:border-gray-300 focus:bg-gray-400 hover:bg-gray-400
+                         placeholder:text-gray-700 placeholder:text-sm"
+            />
+            <input
+              name="flat"
+              placeholder="Flat No (e.g., A-101)"
+              value={form.flat}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="w-11/12 p-2.5 text-xl font-semibold bg-gray-300 text-gray-800 rounded-md
+                         border-l-2 border-b-2 border-gray-500 outline-none mb-2
+                         focus:border-gray-300 focus:bg-gray-400 hover:bg-gray-400
+                         placeholder:text-gray-700 placeholder:text-sm"
+            />
+            <input
+              name="contact"
+              placeholder="Contact Number"
+              value={form.contact}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="w-11/12 p-2.5 text-xl font-semibold bg-gray-300 text-gray-800 rounded-md
+                         border-l-2 border-b-2 border-gray-500 outline-none mb-2
+                         focus:border-gray-300 focus:bg-gray-400 hover:bg-gray-400
+                         placeholder:text-gray-700 placeholder:text-sm"
+            />
+
+            <div className="flex gap-3">
+              <button
+                type="submit"
                 disabled={loading}
-                className="form-input-1"
-              />
-              <input
-                name="flat"
-                placeholder="Flat No (e.g., A-101)"
-                value={form.flat}
-                onChange={handleChange}
-                required
-                disabled={loading}
-                className="form-input-1"
-              />
-              <input
-                name="contact"
-                placeholder="Contact Number"
-                value={form.contact}
-                onChange={handleChange}
-                required
-                disabled={loading}
-                className="form-input-1"
-              />
-            </div>
-            <div className="form-actions">
-              <button type="submit" disabled={loading} className="btn-primary">
+                className="px-5 py-3 text-sm text-gray-800 bg-gray-300 border-2 border-gray-500 rounded-md
+                           hover:bg-gray-200 active:translate-y-[1px] transition"
+              >
                 {loading
                   ? "Saving..."
                   : editingId
@@ -150,7 +162,8 @@ export default function Residents() {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="btn-secondary"
+                  className="px-5 py-3 text-sm text-gray-800 bg-gray-100 border-2 border-gray-400 rounded-md
+                             hover:bg-gray-200 active:translate-y-[1px] transition"
                 >
                   Cancel
                 </button>
@@ -160,51 +173,60 @@ export default function Residents() {
         </div>
 
         {/* Residents List */}
-        <div className="residents-list">
+        <div className="flex-1 min-w-[400px] bg-white/90 p-4 border border-gray-600 rounded-lg">
           {/* Search */}
-          <div className="search-section">
+          <div className="mb-4">
             <input
               type="text"
               placeholder="🔍 Search by name, flat, or contact..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
+              className="w-11/12 px-5 py-3 text-sm text-gray-800 bg-gray-300 border-l-2 border-b-2 border-gray-500 rounded-md
+                         hover:bg-gray-400 focus:bg-gray-400 outline-none placeholder:text-gray-700"
             />
           </div>
 
-          <h3>All Residents ({filteredResidents.length})</h3>
+          <h3 className="text-lg font-semibold">
+            All Residents ({filteredResidents.length})
+          </h3>
+
           {loading ? (
-            <div className="loading">Loading residents...</div>
+            <div className="text-center p-5 text-gray-600">Loading residents...</div>
           ) : filteredResidents.length === 0 ? (
-            <div className="no-data">
+            <div className="text-center p-5 text-gray-600">
               {searchTerm
                 ? "No residents found matching your search."
                 : "No residents added yet. Add your first resident above!"}
             </div>
           ) : (
-            <div className="residents-grid">
+            <div className="grid gap-4 mt-4">
               {filteredResidents.map((resident) => (
-                <div key={resident._id} className="resident-card">
-                  <div className="resident-info">
-                    <h4>{resident.name}</h4>
-                    <p>
+                <div
+                  key={resident._id}
+                  className="bg-gray-50 border border-gray-300 rounded-lg p-4 flex justify-between items-center hover:shadow-md transition"
+                >
+                  <div>
+                    <h4 className="text-gray-800 font-semibold mb-1">
+                      {resident.name}
+                    </h4>
+                    <p className="text-gray-600 text-sm">
                       <strong>Flat:</strong> {resident.flat}
                     </p>
-                    <p>
+                    <p className="text-gray-600 text-sm">
                       <strong>Contact:</strong> {resident.contact}
                     </p>
                   </div>
-                  <div className="resident-actions">
+                  <div className="flex gap-3">
                     <button
                       onClick={() => handleEdit(resident)}
-                      className="btn-edit"
+                      className="p-1.5 rounded hover:bg-blue-100"
                       title="Edit Resident"
                     >
                       <MdModeEdit />
                     </button>
                     <button
                       onClick={() => handleDelete(resident._id)}
-                      className="btn-delete"
+                      className="p-1.5 rounded hover:bg-red-100"
                       title="Delete Resident"
                     >
                       <FaTrash />
